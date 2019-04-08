@@ -6,7 +6,8 @@ class Register extends Component {
     constructor(){
         super();
         this.state = {
-            name: '',
+            nameFirst: '',
+            nameLast: '',
             email: '',
             company: '',
             password: '',
@@ -23,7 +24,7 @@ class Register extends Component {
         console.log('user in Register: \n', user);
 
         try {
-            const createdUser = await fetch('http://localhost:9000/api/v1/movies', {
+            const createdUser = await fetch('http://localhost:9000/auth/register', {
                 method: 'POST',
                 body: JSON.stringify(user),
                 headers: {
@@ -46,8 +47,10 @@ class Register extends Component {
             <h4>Register</h4>
             <Segment>
               <Form onSubmit={this.handleRegister.bind(null, this.state)}>
-                <Label htmlFor='name=name'>Name:</Label>
-                <Form.Input type='text' name='name' value={this.state.name} onChange={this.updateRegister}/>
+                <Label htmlFor='name=name'>First Name:</Label>
+                <Form.Input type='text' name='nameFirst' value={this.state.nameFirst} onChange={this.updateRegister}/>
+                <Label htmlFor='name=name'>Last Name:</Label>
+                <Form.Input type='text' name='nameLast' value={this.state.nameLast} onChange={this.updateRegister}/>
                 <Label>Email:</Label>
                 <Form.Input type='text' name='email' value={this.state.email} onChange={this.updateRegister}/>
                 <Label>Company:</Label>
